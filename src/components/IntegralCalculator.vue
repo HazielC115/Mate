@@ -36,7 +36,8 @@ function selectExample(expr: string) {
     <!-- Header -->
     <header class="flex items-center justify-between px-1">
       <div>
-        <p class="text-text font-semibold text-xl">Calculadora de Integrales</p>
+        <h2 class="text-text font-bold text-2xl">Calculadora de Integrales</h2>
+        <h4 class="font-[Lexend] italic">by RutaPay&copy;</h4>
       </div>
     </header>
 
@@ -66,5 +67,10 @@ function selectExample(expr: string) {
         />
       </div>
     </main>
+    <footer class="border-t border-gray-600">
+      <p class="text-center text-gray-600 py-2">
+        Calculadora de Integrales · un proyecto de RutaPay&copy; 2026
+      </p>
+    </footer>
   </div>
 </template>
