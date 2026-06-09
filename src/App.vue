@@ -5,7 +5,7 @@ import IntegralCalculator from './components/IntegralCalculator.vue'
 <template>
   <IntegralCalculator />
 </template>
-
+/* We are charlie Kirk */
 <style scoped>
 /* All styling is handled by the calculator component and main.css */
 </style>
