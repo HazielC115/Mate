@@ -56,11 +56,7 @@ watch(
       <div class="flex items-center gap-2.5 mb-5">
         <div
           class="w-9 h-9 rounded-lg flex items-center justify-center"
-          :class="
-            result.success
-              ? 'bg-[rgba(52,211,153,0.12)] text-[var(--color-success)]'
-              : 'bg-[rgba(248,113,113,0.12)] text-[var(--color-error)]'
-          "
+          :class="result.success ? 'bg-success/12 text-success' : 'bg-error/12 text-error'"
         >
           <svg
             v-if="result.success"
@@ -85,30 +81,28 @@ watch(
             <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </div>
-        <h2 class="text-base font-semibold text-[var(--color-text-primary)]">Resultado</h2>
+        <h2 class="text-base font-semibold text-text-primary">Resultado</h2>
       </div>
 
       <!-- Integral expression -->
-      <div
-        class="px-4 py-3 rounded-xl bg-[var(--color-dark-700)] border border-[var(--color-border)] mb-3"
-      >
+      <div class="px-4 py-3 rounded-xl bg-dark-700 border border-border mb-3">
         <span
-          class="block text-[0.7rem] font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-2"
+          class="block text-[0.7rem] font-semibold uppercase tracking-widest text-text-muted mb-2"
           >Integral</span
         >
         <div ref="integralEl" class="overflow-x-auto py-0.5"></div>
       </div>
 
       <!-- Divider -->
-      <div class="h-px bg-[var(--color-border)] mb-3"></div>
+      <div class="h-px bg-border mb-3"></div>
 
       <!-- Result -->
       <div
-        class="px-4 py-3 rounded-xl bg-[var(--color-dark-700)] border border-[var(--color-border)]"
+        class="px-4 py-3 rounded-xl bg-dark-700 border border-border"
         :class="{ 'error-result': !result.success }"
       >
         <span
-          class="block text-[0.7rem] font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-2"
+          class="block text-[0.7rem] font-semibold uppercase tracking-widest text-text-muted mb-2"
         >
           {{ result.success ? 'Antiderivada' : 'Estado' }}
         </span>
@@ -120,8 +114,8 @@ watch(
         v-if="result.numericValue !== undefined && result.success"
         class="flex items-center justify-between px-4 py-3 mt-3 rounded-xl border border-[rgba(99,102,241,0.2)] bg-[rgba(99,102,241,0.06)]"
       >
-        <span class="text-sm text-[var(--color-text-secondary)] font-medium">Valor numérico</span>
-        <span class="text-base font-bold text-[var(--color-accent-glow)] font-mono">
+        <span class="text-sm text-text-secondary font-medium">Valor numérico</span>
+        <span class="text-base font-bold text-accent-glow font-mono">
           ≈ {{ result.numericValue.toFixed(6) }}
         </span>
       </div>
@@ -129,7 +123,7 @@ watch(
       <!-- Error message -->
       <div
         v-if="result.error"
-        class="flex items-center gap-2 px-3 py-2.5 mt-3 rounded-lg border border-[rgba(248,113,113,0.2)] bg-[rgba(248,113,113,0.07)] text-[var(--color-error)] text-sm"
+        class="flex items-center gap-2 px-3 py-2.5 mt-3 rounded-lg border border-error/20 bg-error/7 text-error text-sm"
       >
         <svg
           width="15"

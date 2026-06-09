@@ -13,7 +13,7 @@ const emit = defineEmits<{
   'update:isDefinite': [value: boolean]
   'update:lowerBound': [value: number]
   'update:upperBound': [value: number]
-  'calculate': []
+  calculate: []
 }>()
 
 const isFocused = ref(false)
@@ -45,31 +45,39 @@ function handleKeydown(e: KeyboardEvent) {
 
 <template>
   <div class="glass-card p-6">
-
     <!-- Section heading -->
     <div class="flex items-center gap-2.5 mb-5">
-      <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-[rgba(99,102,241,0.1)] text-[var(--color-accent-primary)]">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+      <div
+        class="w-9 h-9 rounded-lg flex items-center justify-center bg-[rgba(99,102,241,0.1)] text-accent-primary"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14M5 12h14" stroke-linecap="round" />
         </svg>
       </div>
-      <h2 class="text-base font-semibold text-[var(--color-text-primary)]">Función f(x)</h2>
+      <h2 class="text-base font-semibold text-text-primary">Función f(x)</h2>
     </div>
 
     <!-- Function input row -->
     <div class="mb-4">
       <div
         class="flex items-center rounded-xl px-4 border transition-colors duration-150"
-        :class="isFocused
-          ? 'border-[var(--color-accent-primary)] bg-[var(--color-dark-700)]'
-          : 'border-[var(--color-border)] bg-[var(--color-dark-700)]'"
+        :class="isFocused ? 'border-accent-primary bg-dark-700' : 'border-border bg-dark-700'"
       >
-        <span class="text-[var(--color-accent-glow)] font-semibold text-base mr-2 whitespace-nowrap font-mono">f(x) =</span>
+        <span class="text-accent-glow font-semibold text-base mr-2 whitespace-nowrap font-mono"
+          >f(x) =</span
+        >
         <input
           id="function-input"
           v-model="functionValue"
           type="text"
-          class="flex-1 bg-transparent border-none outline-none text-[var(--color-text-primary)] text-base font-mono py-3 placeholder:text-[var(--color-text-muted)]"
+          class="flex-1 bg-transparent border-none outline-none text-text-primary text-base font-mono py-3 placeholder:text-text-muted"
           placeholder="ej: x^2 + 3*x - 1"
           autocomplete="off"
           spellcheck="false"
@@ -78,21 +86,23 @@ function handleKeydown(e: KeyboardEvent) {
           @keydown="handleKeydown"
         />
       </div>
-      <p class="text-xs text-[var(--color-text-muted)] mt-1.5 ml-1">
+      <p class="text-xs text-text-muted mt-1.5 ml-1">
         Usa: x^n, sin(x), cos(x), tan(x), e^x, log(x), sqrt(x), pi
       </p>
     </div>
 
     <!-- Integral type toggle -->
     <div class="mb-4">
-      <label class="text-sm text-[var(--color-text-secondary)] mb-2 block font-medium">Tipo de integral</label>
-      <div class="flex gap-2 p-1 rounded-xl bg-[var(--color-dark-700)] border border-[var(--color-border)]">
+      <label class="text-sm text-text-secondary mb-2 block font-medium">Tipo de integral</label>
+      <div class="flex gap-2 p-1 rounded-xl bg-dark-700 border border-border">
         <button
           id="btn-indefinite"
           class="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-150 cursor-pointer"
-          :class="!definiteMode
-            ? 'bg-[var(--color-accent-primary)] text-white'
-            : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'"
+          :class="
+            !definiteMode
+              ? 'bg-accent-primary text-white'
+              : 'text-text-secondary hover:text-text-primary'
+          "
           @click="definiteMode = false"
         >
           <span class="text-base font-bold">∫</span> Indefinida
@@ -100,9 +110,11 @@ function handleKeydown(e: KeyboardEvent) {
         <button
           id="btn-definite"
           class="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-150 cursor-pointer"
-          :class="definiteMode
-            ? 'bg-[var(--color-accent-primary)] text-white'
-            : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'"
+          :class="
+            definiteMode
+              ? 'bg-accent-primary text-white'
+              : 'text-text-secondary hover:text-text-primary'
+          "
           @click="definiteMode = true"
         >
           <span class="text-base font-bold">∫ᵃᵇ</span> Definida
@@ -121,7 +133,9 @@ function handleKeydown(e: KeyboardEvent) {
     >
       <div v-if="definiteMode" class="grid grid-cols-2 gap-3 mb-4 overflow-hidden">
         <div>
-          <label for="lower-bound" class="text-xs text-[var(--color-text-muted)] mb-1.5 block">Límite inferior (a)</label>
+          <label for="lower-bound" class="text-xs text-text-muted mb-1.5 block"
+            >Límite inferior (a)</label
+          >
           <input
             id="lower-bound"
             v-model.number="lower"
@@ -131,7 +145,9 @@ function handleKeydown(e: KeyboardEvent) {
           />
         </div>
         <div>
-          <label for="upper-bound" class="text-xs text-[var(--color-text-muted)] mb-1.5 block">Límite superior (b)</label>
+          <label for="upper-bound" class="text-xs text-text-muted mb-1.5 block"
+            >Límite superior (b)</label
+          >
           <input
             id="upper-bound"
             v-model.number="upper"
@@ -149,8 +165,15 @@ function handleKeydown(e: KeyboardEvent) {
       class="btn-primary w-full flex items-center justify-center gap-2"
       @click="$emit('calculate')"
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
       Calcular Integral
     </button>

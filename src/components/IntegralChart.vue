@@ -15,7 +15,16 @@ import {
 import { generatePoints, generateAreaPoints } from '@/utils/integralEngine'
 import type { Point } from '@/utils/integralEngine'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+)
 
 const props = defineProps<{
   expression: string
@@ -111,14 +120,24 @@ const chartOptions = computed(() => ({
       position: 'center' as const,
       grid: { color: 'rgba(255,255,255,0.04)', drawTicks: false },
       border: { color: 'rgba(255,255,255,0.1)', width: 1 },
-      ticks: { color: '#64748b', font: { size: 11, family: 'Inter' }, maxTicksLimit: 12, padding: 8 },
+      ticks: {
+        color: '#64748b',
+        font: { size: 11, family: 'Inter' },
+        maxTicksLimit: 12,
+        padding: 8,
+      },
     },
     y: {
       type: 'linear' as const,
       position: 'center' as const,
       grid: { color: 'rgba(255,255,255,0.04)', drawTicks: false },
       border: { color: 'rgba(255,255,255,0.1)', width: 1 },
-      ticks: { color: '#64748b', font: { size: 11, family: 'Inter' }, maxTicksLimit: 10, padding: 8 },
+      ticks: {
+        color: '#64748b',
+        font: { size: 11, family: 'Inter' },
+        maxTicksLimit: 10,
+        padding: 8,
+      },
       suggestedMin: -5,
       suggestedMax: 5,
     },
@@ -127,27 +146,41 @@ const chartOptions = computed(() => ({
 
 watch(
   () => [props.expression, props.isDefinite, props.lowerBound, props.upperBound, props.hasResult],
-  () => { chartKey.value++ },
+  () => {
+    chartKey.value++
+  },
 )
 </script>
 
 <template>
   <div class="glass-card p-6">
-
     <!-- Header -->
     <div class="flex items-center gap-2.5 mb-4">
-      <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-[rgba(99,102,241,0.1)] text-[var(--color-accent-primary)]">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-linecap="round" stroke-linejoin="round"/>
+      <div
+        class="w-9 h-9 rounded-lg flex items-center justify-center bg-[rgba(99,102,241,0.1)] text-accent-primary"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline
+            points="22,12 18,12 15,21 9,3 6,12 2,12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </div>
-      <h2 class="text-base font-semibold text-[var(--color-text-primary)]">Gráfica</h2>
+      <h2 class="text-base font-semibold text-text-primary">Gráfica</h2>
     </div>
 
     <!-- Chart -->
     <div
       v-if="hasResult && functionPoints.length > 0"
-      class="relative h-[340px] max-[768px]:h-[260px] p-2 rounded-xl bg-[var(--color-dark-700)] border border-[var(--color-border)]"
+      class="relative h-[340px] max-[768px]:h-[260px] p-2 rounded-xl bg-dark-700 border border-border"
     >
       <Line :key="chartKey" :data="chartData" :options="chartOptions" />
     </div>
@@ -155,14 +188,28 @@ watch(
     <!-- Placeholder -->
     <div
       v-else
-      class="h-[340px] max-[768px]:h-[260px] flex flex-col items-center justify-center gap-4 rounded-xl bg-[var(--color-dark-700)] border border-dashed border-[var(--color-border)]"
+      class="h-[340px] max-[768px]:h-[260px] flex flex-col items-center justify-center gap-4 rounded-xl bg-dark-700 border border-dashed border-border"
     >
-      <div class="w-16 h-16 rounded-full flex items-center justify-center bg-[var(--color-surface)] text-[var(--color-text-muted)]">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
-          <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke-linecap="round" stroke-linejoin="round"/>
+      <div
+        class="w-16 h-16 rounded-full flex items-center justify-center bg-surface text-text-muted"
+      >
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          opacity="0.5"
+        >
+          <polyline
+            points="22,12 18,12 15,21 9,3 6,12 2,12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </div>
-      <p class="text-[var(--color-text-muted)] text-sm text-center px-6">
+      <p class="text-text-muted text-sm text-center px-6">
         Ingresa una función y calcula la integral para ver la gráfica
       </p>
     </div>
