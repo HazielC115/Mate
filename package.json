@@ -13,8 +13,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "chart.js": "^4.5.1",
+    "katex": "^0.17.0",
+    "mathjs": "^15.2.0",
     "tailwindcss": "^4.3.0",
-    "vue": "^3.5.32"
+    "vue": "^3.5.32",
+    "vue-chartjs": "^5.3.3"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
